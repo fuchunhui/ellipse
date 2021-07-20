@@ -5,8 +5,8 @@
     <link rel="icon" href="/ellipse/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ellipse</title>
-  <script type="module" crossorigin src="/ellipse/assets/index.471b82f9.js"></script>
-</head>
+    <script type="module" crossorigin src="/ellipse/assets/index.471b82f9.js"></script>
+  </head>
   <body>
     <div>
       <svg width="1200" height="900" xmlns="http://www.w3.org/2000/svg">
@@ -23,15 +23,21 @@
         <circle cx="500" cy="360" r="320" stroke="red" stroke-width="1" fill="url(#RadialGradient1)"/>
       </svg>
     </div>
+    <!-- roadmap -->
     <!-- 创建一个圆形，半径r -->
     <!-- 创建一个剪切椭圆，长轴r，短轴0.618r -->
     <!-- 拆分圆形，为多个弧组成 -->
+    <!-- API 设计 -->
+    <!-- 初始位置，默认从0度开始，中间最上，顺时针方向 -->
+    <!-- 占比数据，数组，如[{per: 10%, color: 'red'}, {...}, {...}] --> <!-- 数据也可以是分数，然后转换成角度占比 -->
+    <!-- 大小，rx, ry，默认rx, ry最大为长轴，也就是圆形半径长度 -->
+    <!-- 重点是，根据百分比，计算截止的坐标点，也就是获取圆弧上的坐标 -->
+    <!-- 利用角度的换算关系，正弦和余弦，半径求和计算，圆心偏移坐标原点(r, r) -->
     <div class="not-ok">
       <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="RadialGradient2" r="0.5">
             <stop offset="0%" stop-color="red"/>
-            <!-- <stop offset="80%" stop-color="green"/> -->
             <stop offset="100%" stop-color="white"/>
           </radialGradient>
           <clipPath id="cut-off">
