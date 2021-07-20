@@ -76,7 +76,7 @@
     <div>
       <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
-          <style type="text/css"><![CDATA[
+          <style type="text/css">
              #MyRect {
                stroke: black;
                fill: red;
@@ -85,7 +85,7 @@
               stroke: black;
               fill: blue;
             }
-          ]]></style>
+          </style>
         </defs>
         <rect x="10" height="180" y="10" width="180" id="MyRect"/>
       </svg>
@@ -94,7 +94,7 @@
       <defs>
           <linearGradient id="Gradient1">
             <stop class="stop1" offset="0%"/>
-            <!-- <stop class="stop2" offset="50%"/> -->
+            <stop class="stop2" offset="50%"/>
             <stop class="stop3" offset="100%"/>
           </linearGradient>
           <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
@@ -102,12 +102,12 @@
             <stop offset="50%" stop-color="black" stop-opacity="0"/>
             <stop offset="100%" stop-color="blue"/>
           </linearGradient>
-          <style type="text/css"><![CDATA[
+          <style type="text/css">
             #rect1 { fill: url(#Gradient1); }
             .stop1 { stop-color: red; }
             .stop2 { stop-color: black; stop-opacity: 0; }
             .stop3 { stop-color: blue; }
-          ]]></style>
+          </style>
       </defs>
       <ellipse id="rect1" cx="360" cy="225" rx="320" ry="200" stroke="red" stroke-width="1"/>
       <ellipse fill="url(#Gradient2)" cx="1000" cy="225" rx="320" ry="200" stroke="red" stroke-width="1"/>
