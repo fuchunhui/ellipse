@@ -1,0 +1,19 @@
+{
+  "name": "ellipse",
+  "version": "0.1.0",
+  "description": "special ellipse.",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5",
+    "vite": "^2.4.2"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {},
+  "homepage": ""
+}
