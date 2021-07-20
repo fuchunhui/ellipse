@@ -8,53 +8,73 @@
   </head>
   <body>
     <div>
-      <svg width="1400" height="450" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <svg width="1200" height="900" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <radialGradient id="RadialGradient1">
+            <radialGradient id="RadialGradient1" r="0.5">
               <stop offset="0%" stop-color="red"/>
+              <!-- <stop offset="80%" stop-color="green"/> -->
               <stop offset="100%" stop-color="white"/>
             </radialGradient>
-            <radialGradient id="RadialGradient2" cx="0.5" cy="0.5" r="0.4">
-              <stop offset="0%" stop-color="red"/>
-              <stop offset="100%" stop-color="white"/>
-            </radialGradient>
+            <clipPath id="cut-off-bottom">
+              <ellipse cx="500" cy="360" rx="320" ry="200" stroke="red" stroke-width="1" />
+            </clipPath>
         </defs>
-        <ellipse cx="360" cy="225" rx="320" ry="200" stroke="red" stroke-width="1" fill="url(#RadialGradient1)"/>
-        <!-- <ellipse cx="1000" cy="225" rx="320" ry="200" stroke="red" stroke-width="1" fill="url(#RadialGradient2)"/> -->
-      </svg>      
-    </div>
-    <div id="app">
-      <svg version="1.1"
-        baseProfile="full"
-        width="800" height="450"
-        xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="black" />
-        <circle cx="150" cy="100" r="80" fill="green" />
-        <ellipse cx="400" cy="225" rx="320" ry="200" stroke="red" fill="transparent" stroke-width="1"/>
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
+        <!-- <circle cx="500" cy="360" r="320" stroke="red" stroke-width="1" fill="url(#RadialGradient1)" clip-path="url(#cut-off-bottom)"/> -->
+        <circle cx="500" cy="360" r="320" stroke="red" stroke-width="1" fill="url(#RadialGradient1)"/>
       </svg>
     </div>
-    <svg width="320px" height="320px" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 315
-        L 110 215
-        A 30 50 0 0 1 162.55 162.45
-        L 172.55 152.45
-        A 30 50 -45 0 1 215.1 109.9
-        L 315 10" stroke="black" fill="green" stroke-width="2" fill-opacity="0.5"/>
-    </svg>
-    <div>
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- 创建一个圆形，半径r -->
+    <!-- 创建一个剪切椭圆，长轴r，短轴0.618r -->
+    <!-- 拆分圆形，为多个弧组成 -->
+    <div class="not-ok">
+      <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <clipPath id="cut-off-bottom">
-            <rect x="0" y="0" width="200" height="100" />
+          <radialGradient id="RadialGradient2" r="0.5">
+            <stop offset="0%" stop-color="red"/>
+            <!-- <stop offset="80%" stop-color="green"/> -->
+            <stop offset="100%" stop-color="white"/>
+          </radialGradient>
+          <clipPath id="cut-off">
+            <ellipse cx="160" cy="160" rx="160" ry="120" stroke="red" stroke-width="1" />
           </clipPath>
         </defs>
-        <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
+        <rect width="100%" height="100%" fill="transparent" stroke="black" stroke-width="1" />
+        <rect width="100" height="100" fill="transparent" stroke="black" stroke-width="1" x="50" y="50" />
+        <circle cx="160" cy="160" r="160" fill="transparent" stroke="black" stroke-width="0.5" />
+        <circle cx="160" cy="160" r="5" fill="red" stroke-width="0.5" />
+
+        <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"
+          clip-path="url(#cut-off1)">
+          <!-- A x轴半径，y轴半径，x轴旋转角度（0 表示不动），角度大小（0小1大），弧线方向（0逆1顺），终点坐标 -->
+          <path d="M 0 160
+                   A 160 160 0 0 1 160 0
+                    L 160 160 Z" fill="url(#RadialGradient2)" /> <!-- green -->
+          <path d="M 160 0
+                   A 160 160 0 0 1 273.1 273.1
+                   L 160 160 Z" fill="purple" />
+          <path d="M 273.1 273.1
+                   A 160 160 0 0 1 0 160
+                   L 160 160 Z" fill="blue" />
+        </svg>
       </svg>
     </div>
-    <!-- 创建一个饼图，由多个弧形拼接成一个 -->
-    创建一个圆形，半径r
-    创建一个剪切椭圆，长轴r，短轴0.618r
+    <div>
+      <svg width="325px" height="325px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <path d="M80 80
+                 A 45 45, 0, 0, 0, 125 125
+                 L 125 80 Z" fill="green"/>
+        <path d="M230 80
+                 A 45 45, 0, 1, 0, 275 125
+                 L 275 80 Z" fill="red"/>
+        <path d="M80 230
+                 A 45 45, 0, 0, 1, 125 275
+                 L 125 230 Z" fill="purple"/>
+        <path d="M230 230
+                 A 45 45, 0, 1, 1, 275 275
+                 L 275 230 Z" fill="blue"/>
+        <rect width="100" height="100" fill="transparent" stroke="black" stroke-width="1" x="230" y="230" />
+      </svg>
+    </div>
     <script type="module" src="./src/main.ts"></script>
   </body>
 </html>
