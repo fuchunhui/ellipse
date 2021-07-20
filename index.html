@@ -12,7 +12,6 @@
         <defs>
             <radialGradient id="RadialGradient1" r="0.5">
               <stop offset="0%" stop-color="red"/>
-              <!-- <stop offset="80%" stop-color="green"/> -->
               <stop offset="100%" stop-color="white"/>
             </radialGradient>
             <clipPath id="cut-off-bottom">
@@ -44,7 +43,7 @@
         <circle cx="160" cy="160" r="5" fill="red" stroke-width="0.5" />
 
         <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"
-          clip-path="url(#cut-off1)">
+          clip-path="url(#cut-off)">
           <!-- A x轴半径，y轴半径，x轴旋转角度（0 表示不动），角度大小（0小1大），弧线方向（0逆1顺），终点坐标 -->
           <path d="M 0 160
                    A 160 160 0 0 1 160 0
@@ -55,6 +54,43 @@
           <path d="M 273.1 273.1
                    A 160 160 0 0 1 0 160
                    L 160 160 Z" fill="blue" />
+        </svg>
+      </svg>
+    </div>
+    <div class="maybe-ok">
+      <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rg-green" r="0.48">
+            <stop offset="0%" stop-color="green"/>
+            <stop offset="100%" stop-color="white"/>
+          </radialGradient>
+          <radialGradient id="rg-purple" r="0.48">
+            <stop offset="0%" stop-color="purple"/>
+            <stop offset="100%" stop-color="white"/>
+          </radialGradient>
+          <radialGradient id="rg-blue" r="0.48">
+            <stop offset="0%" stop-color="blue"/>
+            <stop offset="100%" stop-color="white"/>
+          </radialGradient>
+          <clipPath id="cut-green">
+            <path d="M 0 160 A 160 160 0 0 1 160 0 L 160 160 Z" />
+          </clipPath>
+          <clipPath id="cut-purple">
+            <path d="M 160 0 A 160 160 0 0 1 273.1 273.1 L 160 160 Z" />
+          </clipPath>
+          <clipPath id="cut-blue">
+            <path d="M 273.1 273.1 A 160 160 0 0 1 0 160 L 160 160 Z"/>
+          </clipPath>
+          <clipPath id="cut-ellipse">
+            <ellipse cx="160" cy="160" rx="160" ry="120" stroke="red" stroke-width="1" />
+          </clipPath>
+        </defs>
+        <rect width="100%" height="100%" fill="transparent" stroke="black" stroke-width="1" />
+        <circle cx="160" cy="160" r="5" fill="red" stroke-width="0.5" />
+        <svg clip-path="url(#cut-ellipse)">
+          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-green)" clip-path="url(#cut-green)" />
+          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-purple)" clip-path="url(#cut-purple)" />
+          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-blue)" clip-path="url(#cut-blue)" />
         </svg>
       </svg>
     </div>
