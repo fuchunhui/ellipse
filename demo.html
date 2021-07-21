@@ -190,8 +190,7 @@
             <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
             <feOffset in="blur" dx="4" dy="4" result="offsetBlur"/>
             <!-- litPaint -->
-            <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75"
-                                specularExponent="20" lighting-color="#bbbbbb" result="specOut">
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" specularExponent="20" lighting-color="#bbbbbb" result="specOut">
               <fePointLight x="-5000" y="-10000" z="20000"/>
             </feSpecularLighting>
             <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
@@ -204,23 +203,17 @@
             xmlns="http://www.w3.org/2000/svg" version="1.1">
          <defs>
            <!-- Filter declaration -->
-           <filter id="MyFilter" filterUnits="userSpaceOnUse"
-                   x="0" y="0"
-                   width="200" height="120">
-       
+           <filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="120">
              <!-- offsetBlur -->
              <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
              <feOffset in="blur" dx="4" dy="4" result="offsetBlur"/>
        
              <!-- litPaint -->
-             <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75"
-                                 specularExponent="20" lighting-color="#bbbbbb"
-                                 result="specOut">
+             <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" specularExponent="20" lighting-color="#bbbbbb" result="specOut">
                <fePointLight x="-5000" y="-10000" z="20000"/>
              </feSpecularLighting>
              <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
-             <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic"
-                          k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
+             <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
        
              <!-- merge offsetBlur + litPaint -->
              <feMerge>
@@ -232,10 +225,8 @@
        
          <!-- Graphic elements -->
          <g filter="url(#MyFilter)">
-             <path fill="none" stroke="#D90000" stroke-width="10"
-                   d="M50,66 c-50,0 -50,-60 0,-60 h100 c50,0 50,60 0,60z" />
-             <path fill="#D90000"
-                   d="M60,56 c-30,0 -30,-40 0,-40 h80 c30,0 30,40 0,40z" />
+             <path fill="none" stroke="#D90000" stroke-width="10" d="M50,66 c-50,0 -50,-60 0,-60 h100 c50,0 50,60 0,60z" />
+             <path fill="#D90000" d="M60,56 c-30,0 -30,-40 0,-40 h80 c30,0 30,40 0,40z" />
              <g fill="#FFFFFF" stroke="black" font-size="45" font-family="Verdana" >
                <text x="52" y="52">SVG</text>
              </g>
@@ -254,9 +245,5 @@
         </g>
       </svg>
     </div>
-    <!-- 创建一个饼图，由多个弧形拼接成一个 -->
-    创建一个圆形，半径r
-    创建一个剪切椭圆，长轴r，短轴0.618r
-    <script type="module" src="./src/main.ts"></script>
   </body>
 </html>
