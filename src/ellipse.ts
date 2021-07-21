@@ -5,8 +5,10 @@
  * 提供export Dom结构API
  */
 
-const createEllipse = (obj: any) => {
+import {Ellipse} from './types/index';
 
+const createEllipse = (options: Ellipse) => {
+  console.log({...options});
 }
 
 const getDom = () => {

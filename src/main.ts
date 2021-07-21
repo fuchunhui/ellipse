@@ -1,12 +1,10 @@
-console.log('Hello World!');
-
 import {createEllipse} from './ellipse';
-// import {Piece} from './types/index';
-
-console.log(createEllipse);
 
 createEllipse({
   deg: 0,
+  rx: 564,
+  ry: 253,
+  gr: 0.5,
   data: [ // percent 小数点最多后4位
     {
       color: 'green',
