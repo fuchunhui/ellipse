@@ -8,12 +8,33 @@
 import {Ellipse} from './types/index';
 
 const createEllipse = (options: Ellipse) => {
-  console.log({...options});
+  const {deg, rx, ry, gr, data} = options;
+  const element = document.createElement('svg');
+
+
+  
+  return element;
 }
 
-const getDom = () => {
-  return '';
-}
+const _svgBlock = () => {
+
+};
+const _defs = () => {};
+const _radialGradient = () => {};
+const _clipPath = () => {};
+const _ellipseClipPath = () => {};
+const _circle = () => {};
+const _group = () => {};
+
+// svg 基础结构定义 rx * 2, ry * 2
+// radialGradient 递归处理，颜色 r rg + 颜色
+// 计算正圆上的坐标点 函数
+// 计算每个clipPath的path路径
+// 拼接clipPath，id规则命名 cut + 颜色
+// 目前显示椭圆，clipPath定义
+// 定义每一片的外圈大圆
+// svg拼接
+// 整体组装
 
 export {
   createEllipse

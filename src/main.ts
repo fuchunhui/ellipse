@@ -1,6 +1,6 @@
 import {createEllipse} from './ellipse';
 
-createEllipse({
+const svg = createEllipse({
   deg: 0,
   rx: 564,
   ry: 253,
@@ -25,3 +25,5 @@ createEllipse({
   ]
 });
 
+const app = document.getElementById('app') as Element;
+app.appendChild(svg);
