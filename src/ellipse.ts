@@ -5,13 +5,19 @@
  * 提供export Dom结构API
  */
 
-import {Ellipse} from './types/index';
+import {Ellipse, Piece} from './types/index';
+import {formatColor} from './matics';
+
+const RADIALGRADIENT_PREFIX = 'rg-';
+const CLIPPATH_PREFIX = 'cut-';
 
 const createEllipse = (options: Ellipse) => {
-  const {deg, rx, ry, gr, data} = options;
-  const element = _svgBlock(rx, ry);
-
+  const {deg, rx, ry, rgr, data} = options;
+  // const colorList: string[] = data.map(item => item.color);
   
+  const defsNode = _defs(options);
+  const element = _svgBlock(rx, ry);
+  element.appendChild(defsNode);
   return element;
 }
 
@@ -23,9 +29,41 @@ const _svgBlock = (rx: number, ry: number) => {
   return ele;
 };
 
-const _defs = () => {};
-const _radialGradient = () => {};
-const _clipPath = () => {};
+const _defs = (options: Ellipse) => {
+  const ele = document.createElement('defs');
+  const {deg, rx, rgr, data: pieceList} = options;
+
+  pieceList.forEach(item => {
+    ele.appendChild(_radialGradient(item.color, rgr));
+    // ele.appendChild(_clipPath(item, rgr));
+  })
+  return ele;
+};
+
+const _radialGradient = (color: string, rgr: string) => {
+  const ele = document.createElement('radialGradient');
+  const id = formatColor(color);
+
+  ele.setAttribute('id', `${RADIALGRADIENT_PREFIX}${id}`);
+  ele.setAttribute('r', rgr);
+
+  const start = document.createElement('stop');
+  start.setAttribute('offset', '0');
+  start.setAttribute('stop-color', color);
+
+  const end = document.createElement('stop');
+  end.setAttribute('offset', '100%'); // 也许是可变值，可以是变量
+  end.setAttribute('stop-color', 'white'); // white 也可以是变化的值
+
+  ele.appendChild(start);
+  ele.appendChild(end);
+
+  return ele;
+};
+
+const _clipPath = () => {
+
+};
 const _ellipseClipPath = () => {};
 const _circle = () => {};
 const _group = () => {};

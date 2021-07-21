@@ -4,7 +4,7 @@ const svg = createEllipse({
   deg: 0,
   rx: 564,
   ry: 253,
-  gr: 0.5,
+  rgr: '50%',
   data: [ // percent 小数点最多后4位
     {
       color: 'green',
@@ -12,14 +12,14 @@ const svg = createEllipse({
     },
     {
       color: 'purple',
-      percent: 0.375
+      percent: '37.5%'
     },
     {
       color: 'green',
       percent: 0.225
     },
     {
-      color: 'red',
+      color: '#FF0000',
       percent: 0.15
     }
   ]

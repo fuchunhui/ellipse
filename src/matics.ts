@@ -2,7 +2,13 @@
 // Math.sin()
 // Math.cos()
 
-
+const formatColor = (value: string) => {
+  if (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value)) {
+    return value.slice(1).toLowerCase(); // #AA33E5 => aa33e5
+  } else {
+    return value.replace(/[(?\.?)?]/g, '').replaceAll(',', '-'); // rgba(232, 123, 45, 0.5) -> rgba232-123-45-05
+  }
+};
 
 const formatPercent = (value: string | number) => {
   if (typeof value === 'number') {
@@ -16,5 +22,6 @@ const formatPercent = (value: string | number) => {
 }
 
 export {
+  formatColor,
   formatPercent
 };
