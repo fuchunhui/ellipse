@@ -9,16 +9,20 @@ import {Ellipse} from './types/index';
 
 const createEllipse = (options: Ellipse) => {
   const {deg, rx, ry, gr, data} = options;
-  const element = document.createElement('svg');
-
+  const element = _svgBlock(rx, ry);
 
   
   return element;
 }
 
-const _svgBlock = () => {
-
+const _svgBlock = (rx: number, ry: number) => {
+  const ele = document.createElement('svg');
+  ele.setAttribute('width', String(rx));
+  ele.setAttribute('height', String(ry));
+  ele.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  return ele;
 };
+
 const _defs = () => {};
 const _radialGradient = () => {};
 const _clipPath = () => {};
