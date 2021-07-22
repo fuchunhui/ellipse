@@ -5,8 +5,9 @@
  * 提供export Dom结构API
  */
 
-import {Ellipse, Piece} from './types/index';
-import {formatColor} from './matics';
+import {Ellipse} from './types/index';
+import {formatColor, formatPercent} from './format';
+import {markCirclePoints, makePaths} from './matics';
 
 // TODO 添加自定义前缀，否则，同一个环境多次引用，就会出现id重复的问题
 // const DEGAULT_PREFIX = 'EE';
@@ -16,22 +17,25 @@ const CLIPPATH_ELLIPSE = 'cut-ellipse';
 
 const createEllipse = (options: Ellipse) => {
   const {deg, rx, ry, rgr, data} = options;
-  
+  const colorList: string[] = data.map(item => item.color);
+
   const defsNode = _defs(options);
-
-  // const colorList: string[] = pieceList.map(item => item.color);
-  // _group
-
+  const groupNode = _group(colorList, rx, ry)
   const element = _svgBlock(rx, ry);
+
   element.appendChild(defsNode);
+  element.appendChild(groupNode);
+
   return element;
 }
 
 const _svgBlock = (rx: number, ry: number) => {
   const ele = document.createElement('svg');
+
   ele.setAttribute('width', String(rx));
   ele.setAttribute('height', String(ry));
   ele.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
   return ele;
 };
 
@@ -42,13 +46,15 @@ const _defs = (options: Ellipse) => {
   // 根据deg rx 以及percent数组，计算出 坐标点数组
   // 根据坐标点数组，映射 path数组
   // 然后再根据颜色 循环。
-  const percentList: (number | string)[] = pieceList.map(item => item.percent);
-  // const pointList
-  // const pathList
+  const percentList: number[] = pieceList.map(item => formatPercent(item.percent));
+  console.log({...percentList});
+  const pointList = markCirclePoints(percentList, rx, deg);
+  console.log({...pointList});
+  const pathList = makePaths(pointList, rx);
 
   pieceList.forEach((item, index) => {
     ele.appendChild(_radialGradient(item.color, rgr));
-    // ele.appendChild(_clipPath(item, pathList[index]));
+    ele.appendChild(_clipPath(item.color, pathList[index]));
   })
 
   ele.appendChild(_ellipseClipPath(rx, ry));

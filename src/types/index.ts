@@ -10,3 +10,8 @@ export interface Ellipse {
   rgr: string; // 径向渐变半径，默认为50%
   data: Piece[] // 每一片的占比和颜色
 };
+
+export interface Point {
+  x: number;
+  y: number;
+};

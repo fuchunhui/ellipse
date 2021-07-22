@@ -1,27 +1,36 @@
 // Math.fround 精确计算
 // Math.sin()
 // Math.cos()
+import {Point} from "./types";
 
-const formatColor = (value: string) => {
-  if (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value)) {
-    return value.slice(1).toLowerCase(); // #AA33E5 => aa33e5
-  } else {
-    return value.replace(/[(?\.?)?]/g, '').replaceAll(',', '-'); // rgba(232, 123, 45, 0.5) -> rgba232-123-45-05
-  }
+const markCirclePoints = (percentList: number[], r: number, deg: number) => {
+  // TODO 重点在这里 来吧三角函数
+  return [{x: 0, y: 0}]
 };
 
-const formatPercent = (value: string | number) => {
-  if (typeof value === 'number') {
-    return value;
-  }
-  if (/^\d{1,2}(\.\d{1,2})?%$/.test(value)) { // 35.23% -> 0.3523
-    const num = Number(value.slice(0, -1)) * 100 / 10000;
-    return num;
-  }
-  return 0;
+const makePaths = (pointList: Point[], r: number) => {
+  const paths: string[] = [];
+  pointList.forEach((item, index) => {
+    const start = flatPoint(item);
+    const center = `${r} ${r}`;
+    const next = flatPoint(pointList[(index + 1) % pointList.length]); // 环形
+    // M 起点
+    // A x轴半径，y轴半径，x轴旋转角度（0表示不动），角度大小（0小1大），弧线方向（0逆1顺），终点坐标
+    // L 终点
+    // Z 结束
+    const path = `M ${start} A ${center} 0 0 1 ${next} L ${center} Z`;
+    paths.push(path);
+  });
+
+  return paths;
 }
 
+const flatPoint = (point: Point) => {
+  const {x, y} = point;
+  return `${x} ${y}`;
+};
+
 export {
-  formatColor,
-  formatPercent
+  markCirclePoints,
+  makePaths
 };
