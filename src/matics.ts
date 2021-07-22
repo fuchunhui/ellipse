@@ -12,7 +12,6 @@ const markCirclePoints = (percentList: number[], r: number, deg: number) => {
     points.push(point);
   });
 
-  console.log('markCirclePoints: ', {...points});
   return points;
 };
 
