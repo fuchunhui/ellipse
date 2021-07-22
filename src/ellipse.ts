@@ -2,7 +2,16 @@
  * @file 椭圆
  * 
  * 提供create方式，传入options
- * 提供export Dom结构API
+ * 设计实现思路：
+ * 1.svg 基础结构定义 rx * 2, ry * 2
+ * 2.radialGradient 递归处理，颜色 r rg + 颜色
+ * 3.计算正圆上的坐标点 函数
+ * 4.计算每个clipPath的path路径
+ * 5.拼接clipPath，id规则命名 cut + 颜色
+ * 6.目前显示椭圆，clipPath定义
+ * 7.定义每一片的外圈大圆
+ * 8.svg拼接
+ * 9.整体组装
  */
 
 import {Ellipse} from './types/index';
@@ -17,7 +26,7 @@ const CLIPPATH_PREFIX = 'cut-';
 const CLIPPATH_ELLIPSE = 'cut-ellipse';
 
 const createEllipse = (options: Ellipse) => {
-  const {deg, rx, ry, rgr, data} = options;
+  const {rx, ry, data} = options;
   const colorList: string[] = data.map(item => item.color);
 
   const defsNode = _defs(options);
@@ -44,13 +53,8 @@ const _defs = (options: Ellipse) => {
   const ele = document.createElementNS(SVGNS, 'defs');
   const {deg, rx, ry, rgr, data: pieceList} = options;
 
-  // 根据deg rx 以及percent数组，计算出 坐标点数组
-  // 根据坐标点数组，映射 path数组
-  // 然后再根据颜色 循环。
   const percentList: number[] = pieceList.map(item => formatPercent(item.percent));
-  console.log({...percentList});
   const pointList = markCirclePoints(percentList, rx, deg);
-  console.log({...pointList});
   const pathList = makePaths(pointList, rx);
 
   pieceList.forEach((item, index) => {
@@ -138,16 +142,6 @@ const _group = (colorList: string[], rx: number, ry: number) => {
 
   return ele;
 };
-
-// svg 基础结构定义 rx * 2, ry * 2
-// radialGradient 递归处理，颜色 r rg + 颜色
-// 计算正圆上的坐标点 函数
-// 计算每个clipPath的path路径
-// 拼接clipPath，id规则命名 cut + 颜色
-// 目前显示椭圆，clipPath定义
-// 定义每一片的外圈大圆
-// svg拼接
-// 整体组装
 
 export {
   createEllipse
