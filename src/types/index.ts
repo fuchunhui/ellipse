@@ -1,6 +1,6 @@
 export interface Piece {
-  color: string;
-  percent: number | string;
+  color: string; // white, #FE00FE, rgba(231, 231, 231, 0.8), rgb(255, 23, 12)
+  percent: number | string; // 0.23, 23.1%, 54.23%
 };
 
 export interface Ellipse {
@@ -8,7 +8,9 @@ export interface Ellipse {
   rx: number; // 椭圆长轴半径，也就是正圆的半径
   ry: number; // 椭圆的短轴半径，当ry = rx的时候，表现为正圆效果
   rgr: string; // 径向渐变半径，默认为50%
-  data: Piece[] // 每一片的占比和颜色
+  data: Piece[]; // 每一片的占比和颜色
+  prefix?: string; // 自定义defs 元素id的前缀，用于区分多次使用，避免id重复问题
+  fullColor?: string; // 100%状态的色值，默认white
 };
 
 export interface Point {

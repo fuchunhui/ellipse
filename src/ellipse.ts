@@ -18,15 +18,21 @@ import {Ellipse} from './types/index';
 import {formatColor, formatPercent} from './format';
 import {markCirclePoints, makePaths} from './matics';
 
-// TODO 添加自定义前缀，否则，同一个环境多次引用，就会出现id重复的问题
-// const DEGAULT_PREFIX = 'EE';
 const SVGNS = 'http://www.w3.org/2000/svg';
-const RADIALGRADIENT_PREFIX = 'rg-';
-const CLIPPATH_PREFIX = 'cut-';
-const CLIPPATH_ELLIPSE = 'cut-ellipse';
+const DEGAULT_PREFIX = '';
+let RADIALGRADIENT_PREFIX = 'rg-';
+let CLIPPATH_PREFIX = 'cut-';
+let CLIPPATH_ELLIPSE = 'cut-ellipse';
+
+const _setConst = (prefix: string) => {
+  RADIALGRADIENT_PREFIX = prefix + RADIALGRADIENT_PREFIX;
+  CLIPPATH_PREFIX = prefix + CLIPPATH_PREFIX;
+  CLIPPATH_ELLIPSE = prefix + CLIPPATH_ELLIPSE;
+};
 
 const createEllipse = (options: Ellipse) => {
-  const {rx, ry, data} = options;
+  const {rx, ry, data, prefix} = options;
+  _setConst(prefix || DEGAULT_PREFIX);
   const colorList: string[] = data.map(item => item.color);
 
   const defsNode = _defs(options);
@@ -51,14 +57,14 @@ const _svgBlock = (rx: number, ry: number) => {
 
 const _defs = (options: Ellipse) => {
   const ele = document.createElementNS(SVGNS, 'defs');
-  const {deg, rx, ry, rgr, data: pieceList} = options;
+  const {deg, rx, ry, rgr, data: pieceList, fullColor} = options;
 
   const percentList: number[] = pieceList.map(item => formatPercent(item.percent));
   const pointList = markCirclePoints(percentList, rx, deg);
   const pathList = makePaths(pointList, rx);
 
   pieceList.forEach((item, index) => {
-    ele.appendChild(_radialGradient(item.color, rgr));
+    ele.appendChild(_radialGradient(item.color, rgr, fullColor));
     ele.appendChild(_clipPath(item.color, pathList[index]));
   })
 
@@ -67,7 +73,7 @@ const _defs = (options: Ellipse) => {
   return ele;
 };
 
-const _radialGradient = (color: string, rgr: string) => {
+const _radialGradient = (color: string, rgr: string, fullColor: string = 'white') => {
   const ele = document.createElementNS(SVGNS, 'radialGradient');
   const id = formatColor(color);
 
@@ -79,8 +85,8 @@ const _radialGradient = (color: string, rgr: string) => {
   start.setAttribute('stop-color', color);
 
   const end = document.createElementNS(SVGNS, 'stop');
-  end.setAttribute('offset', '100%'); // 也许是可变值，可以是变量
-  end.setAttribute('stop-color', 'white'); // white 也可以是变化的值
+  end.setAttribute('offset', '100%');
+  end.setAttribute('stop-color', fullColor || 'white');
 
   ele.appendChild(start);
   ele.appendChild(end);

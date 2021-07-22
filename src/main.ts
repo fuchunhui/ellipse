@@ -48,7 +48,9 @@ const svg = createEllipse({
       color: '#F5E7FE',
       percent: 0.05
     }
-  ]
+  ],
+  prefix: '',
+  fullColor: ''
 });
 
 const app = document.getElementById('app') as Element;

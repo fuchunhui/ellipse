@@ -7,6 +7,9 @@ const markCirclePoints = (percentList: number[], r: number, deg: number) => {
 
   const angleList = percentList.map(item => _angle(item));
   angleList.forEach((item, index) => {
+    if (index === angleList.length -1) {
+      return;
+    }
     const angle = angleList.slice(0, index + 1).reduce((a, b) => a + b, startAngle);
     const point = _point(angle, r);
     points.push(point);
