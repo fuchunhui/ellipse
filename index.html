@@ -5,7 +5,7 @@
     <link rel="icon" href="/ellipse/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ellipse</title>
-    <script type="module" crossorigin src="/ellipse/assets/index.c599aa76.js"></script>
+    <script type="module" crossorigin src="/ellipse/assets/index.75fbf8d6.js"></script>
   </head>
   <body>
     <div id="app"></div>
@@ -24,38 +24,38 @@
     <div class="super-ellipse">
       <svg width="320" height="160" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="rg-green" r="0.60">
-            <stop offset="0%" stop-color="green"/>
+          <radialGradient id="rg-cyan" r="0.60">
+            <stop offset="0%" stop-color="cyan"/>
             <stop offset="100%" stop-color="white"/>
           </radialGradient>
-          <radialGradient id="rg-purple" r="0.60">
-            <stop offset="0%" stop-color="purple"/>
+          <radialGradient id="rg-yellow" r="0.60">
+            <stop offset="0%" stop-color="yellow"/>
             <stop offset="100%" stop-color="white"/>
           </radialGradient>
-          <radialGradient id="rg-blue" r="0.60">
-            <stop offset="0%" stop-color="blue"/>
+          <radialGradient id="rg-blueviolet" r="0.60">
+            <stop offset="0%" stop-color="blueviolet"/>
             <stop offset="100%" stop-color="white"/>
           </radialGradient>
-          <clipPath id="cut-green">
+          <clipPath id="cut-cyan">
             <!-- A x轴半径，y轴半径，x轴旋转角度（0 表示不动），角度大小（0小1大），弧线方向（0逆1顺），终点坐标 -->
             <path d="M 0 160 A 160 160 0 0 1 160 0 L 160 160 Z" />
           </clipPath>
-          <clipPath id="cut-purple">
+          <clipPath id="cut-yellow">
             <path d="M 160 0 A 160 160 0 0 1 273.1 273.1 L 160 160 Z" />
           </clipPath>
-          <clipPath id="cut-blue">
+          <clipPath id="cut-blueviolet">
             <path d="M 273.1 273.1 A 160 160 0 0 1 0 160 L 160 160 Z"/>
           </clipPath>
-          <clipPath id="cut-ellipse">
+          <clipPath id="cp-ellipse">
             <ellipse cx="160" cy="160" rx="160" ry="80" stroke="red" stroke-width="1" />
           </clipPath>
         </defs>
         <rect width="100%" height="100%" fill="transparent" stroke="black" stroke-width="1" />
         <circle cx="160" cy="160" r="5" fill="red" stroke-width="0.5" />
-        <g clip-path="url(#cut-ellipse)" transform="translate(0, -80)">
-          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-green)" clip-path="url(#cut-green)" />
-          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-purple)" clip-path="url(#cut-purple)" />
-          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-blue)" clip-path="url(#cut-blue)" />
+        <g clip-path="url(#cp-ellipse)" transform="translate(0, -80)">
+          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-cyan)" clip-path="url(#cut-cyan)" />
+          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-yellow)" clip-path="url(#cut-yellow)" />
+          <circle cx="160" cy="160" r="160" stroke="black" stroke-width="0.1" fill="url(#rg-blueviolet)" clip-path="url(#cut-blueviolet)" />
         </g>
       </svg>
     </div>
