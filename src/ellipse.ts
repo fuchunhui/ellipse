@@ -11,6 +11,7 @@ import {markCirclePoints, makePaths} from './matics';
 
 // TODO 添加自定义前缀，否则，同一个环境多次引用，就会出现id重复的问题
 // const DEGAULT_PREFIX = 'EE';
+const SVGNS = 'http://www.w3.org/2000/svg';
 const RADIALGRADIENT_PREFIX = 'rg-';
 const CLIPPATH_PREFIX = 'cut-';
 const CLIPPATH_ELLIPSE = 'cut-ellipse';
@@ -30,17 +31,17 @@ const createEllipse = (options: Ellipse) => {
 }
 
 const _svgBlock = (rx: number, ry: number) => {
-  const ele = document.createElement('svg');
+  const ele = document.createElementNS(SVGNS, 'svg');
 
-  ele.setAttribute('width', String(rx));
-  ele.setAttribute('height', String(ry));
-  ele.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  ele.setAttribute('width', String(rx * 2));
+  ele.setAttribute('height', String(ry * 2));
+  ele.setAttribute('xmlns', SVGNS);
 
   return ele;
 };
 
 const _defs = (options: Ellipse) => {
-  const ele = document.createElement('defs');
+  const ele = document.createElementNS(SVGNS, 'defs');
   const {deg, rx, ry, rgr, data: pieceList} = options;
 
   // 根据deg rx 以及percent数组，计算出 坐标点数组
@@ -63,17 +64,17 @@ const _defs = (options: Ellipse) => {
 };
 
 const _radialGradient = (color: string, rgr: string) => {
-  const ele = document.createElement('radialGradient');
+  const ele = document.createElementNS(SVGNS, 'radialGradient');
   const id = formatColor(color);
 
   ele.setAttribute('id', `${RADIALGRADIENT_PREFIX}${id}`);
   ele.setAttribute('r', rgr);
 
-  const start = document.createElement('stop');
+  const start = document.createElementNS(SVGNS, 'stop');
   start.setAttribute('offset', '0');
   start.setAttribute('stop-color', color);
 
-  const end = document.createElement('stop');
+  const end = document.createElementNS(SVGNS, 'stop');
   end.setAttribute('offset', '100%'); // 也许是可变值，可以是变量
   end.setAttribute('stop-color', 'white'); // white 也可以是变化的值
 
@@ -84,11 +85,11 @@ const _radialGradient = (color: string, rgr: string) => {
 };
 
 const _clipPath = (color: string, d: string) => {
-  const ele = document.createElement('clipPath');
+  const ele = document.createElementNS(SVGNS, 'clipPath');
   const id = formatColor(color);
   ele.setAttribute('id', `${CLIPPATH_PREFIX}${id}`);
 
-  const path = document.createElement('path');
+  const path = document.createElementNS(SVGNS, 'path');
   path.setAttribute('d', d);
 
   ele.appendChild(path);
@@ -97,10 +98,10 @@ const _clipPath = (color: string, d: string) => {
 };
 
 const _ellipseClipPath = (rx: number, ry: number) => {
-  const ele = document.createElement('clipPath');
+  const ele = document.createElementNS(SVGNS, 'clipPath');
   ele.setAttribute('id', CLIPPATH_ELLIPSE);
 
-  const ellipse = document.createElement('ellipse');
+  const ellipse = document.createElementNS(SVGNS, 'ellipse');
   const r = String(rx);
   ellipse.setAttribute('cx', r);
   ellipse.setAttribute('cy', r);
@@ -113,7 +114,7 @@ const _ellipseClipPath = (rx: number, ry: number) => {
 };
 
 const _circle = (color: string, rx: number) => {
-  const ele = document.createElement('circle');
+  const ele = document.createElementNS(SVGNS, 'circle');
   const id = formatColor(color);
   const r = String(rx);
 
@@ -127,9 +128,9 @@ const _circle = (color: string, rx: number) => {
 };
 
 const _group = (colorList: string[], rx: number, ry: number) => {
-  const ele = document.createElement('g');
-  ele.setAttribute('clip-path', `url(${CLIPPATH_ELLIPSE})`);
-  ele.setAttribute('transform', `translate(0, -${ry / 2})`);
+  const ele = document.createElementNS(SVGNS, 'g');
+  ele.setAttribute('clip-path', `url(#${CLIPPATH_ELLIPSE})`);
+  ele.setAttribute('transform', `translate(0, ${ry - rx})`);
 
   colorList.forEach(item => {
     ele.appendChild(_circle(item, rx))
