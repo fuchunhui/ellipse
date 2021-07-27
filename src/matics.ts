@@ -7,7 +7,7 @@ const markCirclePoints = (percentList: number[], r: number, deg: number) => {
 
   const angleList = percentList.map(item => _angle(item));
   angleList.forEach((item, index) => {
-    if (index === angleList.length -1) {
+    if (index === angleList.length -1) { // 环形，终点和起点重复，不需要再次计算
       return;
     }
     const angle = angleList.slice(0, index + 1).reduce((a, b) => a + b, startAngle);

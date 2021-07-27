@@ -24,7 +24,7 @@ let RADIALGRADIENT_PREFIX = 'rg-';
 let CLIPPATH_PREFIX = 'cut-';
 let CLIPPATH_ELLIPSE = 'cut-ellipse';
 
-const _setConst = (prefix: string) => {
+const _prefix = (prefix: string) => {
   RADIALGRADIENT_PREFIX = prefix + RADIALGRADIENT_PREFIX;
   CLIPPATH_PREFIX = prefix + CLIPPATH_PREFIX;
   CLIPPATH_ELLIPSE = prefix + CLIPPATH_ELLIPSE;
@@ -32,7 +32,7 @@ const _setConst = (prefix: string) => {
 
 const createEllipse = (options: Ellipse) => {
   const {rx, ry, data, prefix} = options;
-  _setConst(prefix || DEGAULT_PREFIX);
+  _prefix(prefix || DEGAULT_PREFIX);
   const colorList: string[] = data.map(item => item.color);
 
   const defsNode = _defs(options);
