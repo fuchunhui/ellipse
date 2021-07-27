@@ -36,7 +36,7 @@ const createEllipse = (options: Ellipse) => {
   const colorList: string[] = data.map(item => item.color);
 
   const defsNode = _defs(options);
-  const groupNode = _group(colorList, rx, ry)
+  const groupNode = _group(colorList, rx, ry);
   const element = _svgBlock(rx, ry);
 
   element.appendChild(defsNode);

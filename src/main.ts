@@ -1,9 +1,14 @@
 import {createEllipse} from './ellipse';
+import {createScatter} from './scatter';
 
-const svg = createEllipse({
-  deg: 0,
+const size = {
   rx: 564,
-  ry: 253,
+  ry: 253
+};
+
+const ellipse = createEllipse({
+  deg: 0,
+  ...size,
   rgr: '50%',
   data: [
     {
@@ -35,6 +40,29 @@ const svg = createEllipse({
   fullColor: ''
 });
 
+const svg = createScatter({
+  level: 1,
+  ...size,
+  data: [
+    {
+      level1: ['red', 'green', 'blue']
+    },
+    {
+      level1: ['red', 'cyan']
+    },
+    {
+      level1: ['blue']
+    },
+    {
+    },
+    {
+    },
+    {
+      level1: ['#EE6677', '#CCBBDD', '#889900', 'rgb(123, 123, 123)']
+    }
+  ]
+});
+
 /**
  * 1. 椭圆或者圆，不限制方向。
  * 2. 支持默认不传rx, ry，使用getBoundingClientRect计算获取，取最大值，计算出rx, ry
@@ -44,4 +72,4 @@ const svg = createEllipse({
  */
 
 const app = document.getElementById('app') as Element;
-app.appendChild(svg);
+app.appendChild(ellipse);

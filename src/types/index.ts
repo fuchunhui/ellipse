@@ -1,6 +1,9 @@
 export interface Piece {
   color: string; // white, #FE00FE, rgba(231, 231, 231, 0.8), rgb(255, 23, 12)
   percent: number | string; // 0.23, 23.1%, 54.23%
+  level1?: string[]; // 层级，对应的色值
+  level2?: string[]; // 层级，对应的色值
+  level3?: string[]; // 层级，对应的色值
 };
 
 export interface Ellipse {
@@ -16,4 +19,17 @@ export interface Ellipse {
 export interface Point {
   x: number;
   y: number;
+};
+
+type Levels = 1 | 2 | 3;
+
+type Level = {
+  [k in `level${Levels}`]?: string[];
+};
+
+export interface Scatter {
+  rx: number;
+  ry: number;
+  level?: number; // 椭圆上的散点系列，默认值为0
+  data: Level[]; // 层级数组，散点序列
 };
