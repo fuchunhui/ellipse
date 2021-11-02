@@ -3,7 +3,7 @@ import {Scatter} from './types/index';
 const SVGNS = 'http://www.w3.org/2000/svg';
 
 const createScatter = (options: Scatter) => {
-  const {rx, ry, data, prefix, level} = options;
+  const {rx, ry, data, level} = options;
   const element = _svgBlock(rx, ry);
   return element;
 };
@@ -20,6 +20,12 @@ const _svgBlock = (rx: number, ry: number) => {
 
 const _level = () => {
   // 多层级椭圆
+  const ele = document.createElementNS(SVGNS, 'g');
+  // colorList.forEach(item => {
+  //   ele.appendChild(_circle(item, rx))
+  // });
+
+  return ele;
 };
 
 const _cellCircle = () => {

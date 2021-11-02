@@ -40,7 +40,7 @@ const ellipse = createEllipse({
   fullColor: ''
 });
 
-const svg = createScatter({
+const scatter = createScatter({ // 暂定分离实现思路，不再推进，原理同。
   level: 1,
   ...size,
   data: [
@@ -73,3 +73,4 @@ const svg = createScatter({
 
 const app = document.getElementById('app') as Element;
 app.appendChild(ellipse);
+// app.appendChild(scatter);
